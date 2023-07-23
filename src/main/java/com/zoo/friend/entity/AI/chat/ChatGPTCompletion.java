@@ -43,7 +43,7 @@ public class ChatGPTCompletion implements Serializable {
 
     //是否流式输出
     @Builder.Default
-    private boolean stream = false;
+    private boolean stream = true;
 
     //停止输出标识
     private List<String> stop;

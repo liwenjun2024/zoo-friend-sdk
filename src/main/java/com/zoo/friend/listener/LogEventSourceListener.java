@@ -27,6 +27,10 @@ public class LogEventSourceListener extends EventSourceListener {
     @Override
     public void onEvent(EventSource eventSource, String id, String type, String data) {
         log.info("返回数据");
+        log.info("eventSource: {}",eventSource);
+        log.info("id: {}",id);
+        log.info("type: {}",type);
+        log.info("data: {}",data);
     }
 
     @Override
