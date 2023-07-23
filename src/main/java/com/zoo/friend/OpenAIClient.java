@@ -1,6 +1,7 @@
 package com.zoo.friend;
 
 import cn.hutool.http.ContentType;
+import cn.hutool.http.Header;
 import cn.hutool.json.JSONUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.zoo.friend.common.ErrorCode;
@@ -26,6 +27,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.net.InetSocketAddress;
 import java.net.Proxy;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -66,13 +68,11 @@ public class OpenAIClient {
             host = AIUrlConstant.OPENAI_HOST_URL;
         }
 
-        if (StringUtils.containsWhitespace(run.apikey)) {
-            throw new BusinessException(ErrorCode.APIKEY_ERROR);
-        }
+        if (Objects.isNull(run.apikey)) {
+
+        } else apikey = run.apikey;
 
 
-
-        apikey = run.apikey;
         if(Objects.isNull(run.okHttpClient)){
             run.okHttpClient = this.okHttpClient();
         } else {
@@ -108,6 +108,8 @@ public class OpenAIClient {
             String requestBody = JSONUtil.toJsonStr(completion);
             Request request = new Request.Builder()
                     .url(this.host + "v1/chat/completions")
+                    .header(Header.AUTHORIZATION.getValue(),"Bearer "+this.apikey)
+                    .header(Header.CONTENT_TYPE.getValue(), ContentType.JSON.getValue())
                     .post(RequestBody.create(requestBody, MediaType.parse(ContentType.JSON.getValue())))
                     .build();
 
@@ -121,7 +123,7 @@ public class OpenAIClient {
     public void streamCompletions(ChatGPTMessage messages, EventSourceListener source) {
         ChatGPTCompletion completion = ChatGPTCompletion.builder()
                 .stream(true)
-                .messages(messages)
+                .messages(Arrays.asList(messages))
                 .build();
         this.streamCompletions(completion, source);
     }

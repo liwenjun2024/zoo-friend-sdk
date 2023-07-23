@@ -34,7 +34,7 @@ public class ChatGPTMessage implements Serializable {
     public ChatGPTMessage(PartyRun run) {
         if (!StringUtils.isEmpty(run.role)) {
             role = run.role;
-        }
+        } else role = Role.USER.getName();
         if (!StringUtils.isEmpty(run.content)) {
             content = run.content;
         }

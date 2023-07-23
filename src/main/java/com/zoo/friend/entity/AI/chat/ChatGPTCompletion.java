@@ -22,9 +22,10 @@ import java.util.Map;
 @AllArgsConstructor
 public class ChatGPTCompletion implements Serializable {
 
+    @Builder.Default
     private String model = GPTModel.GPT_3_5_TURBO.getName();
     @NonNull
-    private ChatGPTMessage messages;
+    private List<ChatGPTMessage> messages;
 
     private List<ChatGPTFunction> functions;
 
