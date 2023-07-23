@@ -6,8 +6,8 @@ package com.zoo.friend.constant;
  * @description TODO
  * @date 2023/7/23 0:13
  */
-public interface AIUrlConstant {
-   String OPENAI_HOST_URL = "https://api.openai.com/";
+public class AIUrlConstant {
+   public static final String OPENAI_HOST_URL = "https://api.openai.com/";
 
 
 }

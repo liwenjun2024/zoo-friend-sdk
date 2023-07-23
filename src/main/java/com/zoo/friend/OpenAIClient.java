@@ -27,6 +27,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -37,14 +38,15 @@ import java.util.concurrent.TimeUnit;
  */
 public class OpenAIClient {
 
-    @Getter
-    private OpenAIGPTInterface openAIGPTInterface;
 
     @Getter
     private OkHttpClient okHttpClient;
 
     @Getter
     private String apikey;
+
+    @Getter
+    private OpenAIGPTInterface openAIGPT;
 
     @Getter
     private String host;
@@ -60,24 +62,27 @@ public class OpenAIClient {
     public OpenAIClient(PartyRun run) {
         if (StringUtils.containsWhitespace(run.host)) {
             host = run.host;
-            System.out.println("是ture，打印："+host);
         } else {
             host = AIUrlConstant.OPENAI_HOST_URL;
-            System.out.println("是false，打印:" +host);
         }
 
-
-        host = run.host;
         if (StringUtils.containsWhitespace(run.apikey)) {
             throw new BusinessException(ErrorCode.APIKEY_ERROR);
         }
 
 
+
         apikey = run.apikey;
+        if(Objects.isNull(run.okHttpClient)){
+            run.okHttpClient = this.okHttpClient();
+        } else {
+            run.okHttpClient = run.okHttpClient
+                    .newBuilder().build();
+        }
 
         okHttpClient = run.okHttpClient;
 
-        openAIGPTInterface = new Retrofit.Builder()
+        this.openAIGPT = new Retrofit.Builder()
                 .baseUrl(host)
                 .client(okHttpClient)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
