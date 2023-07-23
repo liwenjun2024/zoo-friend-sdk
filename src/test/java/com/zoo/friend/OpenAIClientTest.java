@@ -1,5 +1,8 @@
 package com.zoo.friend;
 
+import com.zoo.friend.constant.Role;
+import com.zoo.friend.entity.AI.chat.ChatGPTCompletion;
+import com.zoo.friend.entity.AI.chat.ChatGPTMessage;
 import com.zoo.friend.listener.LogEventSourceListener;
 
 /**
@@ -10,10 +13,14 @@ import com.zoo.friend.listener.LogEventSourceListener;
  */
 public class OpenAIClientTest {
     public static void main(String[] args) {
+        ChatGPTMessage message = ChatGPTMessage.Party()
+                .setRole(Role.USER).setContent("家人们，无语死了").partyRun();
+        ChatGPTCompletion completion = ChatGPTCompletion.builder().messages(message).build();
         OpenAIClient client = OpenAIClient.Party()
                 .apikey("")
                 .partyRun();
-        LogEventSourceListener logEventSourceListener = new LogEventSourceListener();
+        LogEventSourceListener eventSourceListener = new LogEventSourceListener();
+        client.streamCompletions(completion,eventSourceListener);
 
     }
 }

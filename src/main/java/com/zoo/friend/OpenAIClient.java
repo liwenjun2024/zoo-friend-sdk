@@ -2,8 +2,11 @@ package com.zoo.friend;
 
 import cn.hutool.http.ContentType;
 import cn.hutool.json.JSONUtil;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.zoo.friend.common.ErrorCode;
-import com.zoo.friend.constant.OpenAI;
+import com.zoo.friend.constant.AIUrlConstant;
+import com.zoo.friend.entity.AI.chat.ChatGPTCompletion;
+import com.zoo.friend.entity.AI.chat.ChatGPTMessage;
 import com.zoo.friend.entity.models.Problem;
 import com.zoo.friend.exception.BusinessException;
 import com.zoo.friend.factory.FastJsonConverterFactory;
@@ -23,6 +26,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.net.InetSocketAddress;
 import java.net.Proxy;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -49,17 +53,22 @@ public class OpenAIClient {
     @Getter
     private Boolean isProxy;
 
-    public static PartyRun Party(){
+    public static PartyRun Party() {
         return new PartyRun();
     }
 
-    public OpenAIClient(PartyRun run){
-        if(StringUtils.containsWhitespace(run.host)){
-            host = OpenAI.HOST_URL;
-        }else host = run.host;
+    public OpenAIClient(PartyRun run) {
+        if (StringUtils.containsWhitespace(run.host)) {
+            host = run.host;
+            System.out.println("是ture，打印："+host);
+        } else {
+            host = AIUrlConstant.OPENAI_HOST_URL;
+            System.out.println("是false，打印:" +host);
+        }
+
 
         host = run.host;
-        if(StringUtils.containsWhitespace(run.apikey)){
+        if (StringUtils.containsWhitespace(run.apikey)) {
             throw new BusinessException(ErrorCode.APIKEY_ERROR);
         }
 
@@ -68,7 +77,7 @@ public class OpenAIClient {
 
         okHttpClient = run.okHttpClient;
 
-        openAIGPTInterface =  new Retrofit.Builder()
+        openAIGPTInterface = new Retrofit.Builder()
                 .baseUrl(host)
                 .client(okHttpClient)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -77,7 +86,7 @@ public class OpenAIClient {
     }
 
     private OkHttpClient okHttpClient() {
-        Proxy proxy = new Proxy(Proxy.Type.HTTP,new InetSocketAddress("127.0.0.1",7890));
+        Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", 7890));
         return new OkHttpClient
                 .Builder()
                 .proxy(proxy)
@@ -87,32 +96,40 @@ public class OpenAIClient {
                 .build();
     }
 
-    public void streamCompletions(Problem pro, EventSourceListener source){
+    public void streamCompletions(ChatGPTCompletion completion, EventSourceListener source) {
 
-        EventSource.Factory factory = EventSources.createFactory(this.okHttpClient);
-        String requestBody = JSONUtil.toJsonStr(pro);
-        Request request = new Request.Builder()
-                .url(this.host + "v1/chat/completions")
-                .post(RequestBody.create(requestBody,MediaType.parse(ContentType.JSON.getValue())))
-                .build();
-        //创建事件
-        EventSource eventSource = factory.newEventSource(request, source);
+        try {
+            EventSource.Factory factory = EventSources.createFactory(this.okHttpClient);
+            String requestBody = JSONUtil.toJsonStr(completion);
+            Request request = new Request.Builder()
+                    .url(this.host + "v1/chat/completions")
+                    .post(RequestBody.create(requestBody, MediaType.parse(ContentType.JSON.getValue())))
+                    .build();
+
+            EventSource eventSource = factory.newEventSource(request, source);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
-    public void streamCompletions(String question, EventSourceListener source) {
-        Problem pro = Problem.builder()
+    public void streamCompletions(ChatGPTMessage messages, EventSourceListener source) {
+        ChatGPTCompletion completion = ChatGPTCompletion.builder()
                 .stream(true)
-                .description(question)
+                .messages(messages)
                 .build();
-        this.streamCompletions(pro, source);
+        this.streamCompletions(completion, source);
     }
-    public static final class PartyRun{
-        public PartyRun(){
+
+    public static final class PartyRun {
+        public PartyRun() {
 
         }
-        public OpenAIClient partyRun(){
+
+        public OpenAIClient partyRun() {
             return new OpenAIClient(this);
         }
+
         //openAI密钥
         private String apikey;
 
@@ -136,8 +153,6 @@ public class OpenAIClient {
             return this;
         }
     }
-
-
 
 
 }
