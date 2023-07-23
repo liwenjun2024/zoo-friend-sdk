@@ -22,11 +22,17 @@ public class OpenAIClientTest {
         ChatGPTCompletion completion = ChatGPTCompletion.builder().messages(Arrays.asList(message)).build();
 
         OpenAIClient client = OpenAIClient.Party()
-                .apikey("")
+                .apikey("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")
                 .partyRun();
 
         LogEventSourceListener eventSourceListener = new LogEventSourceListener();
         client.streamCompletions(completion,eventSourceListener);
 
+        CountDownLatch countDownLatch = new CountDownLatch(1);
+        try {
+            countDownLatch.await();
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
     }
 }
