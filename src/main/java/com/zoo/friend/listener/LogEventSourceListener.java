@@ -1,13 +1,12 @@
 package com.zoo.friend.listener;
 
+
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import okhttp3.sse.EventSource;
 import okhttp3.sse.EventSourceListener;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
@@ -17,6 +16,7 @@ import java.util.Objects;
  * @description TODO
  * @date 2023/7/23 15:41
  */
+
 @Slf4j
 public class LogEventSourceListener extends EventSourceListener {
     @Override
