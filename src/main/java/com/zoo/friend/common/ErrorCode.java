@@ -9,7 +9,9 @@ package com.zoo.friend.common;
 public enum ErrorCode {
 
     APIKEY_ERROR(11,"apikey错误"),
-    HOST_ERROR(22,"地址错误");
+    HOST_ERROR(22,"地址错误"),
+    SSE_ERROR(33,"sse传输错误"),
+    ;
 
     //后续可以添入官方错误码
 

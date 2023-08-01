@@ -3,7 +3,7 @@ package com.zoo.friend;
 import com.zoo.friend.constant.Role;
 import com.zoo.friend.entity.AI.chat.ChatGPTCompletion;
 import com.zoo.friend.entity.AI.chat.ChatGPTMessage;
-import com.zoo.friend.listener.LogEventSourceListener;
+import com.zoo.friend.listener.ZooEventSourceListener;
 
 import java.util.Arrays;
 import java.util.concurrent.CountDownLatch;
@@ -25,7 +25,7 @@ public class OpenAIClientTest {
                 .apikey("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")
                 .partyRun();
 
-        LogEventSourceListener eventSourceListener = new LogEventSourceListener();
+        ZooEventSourceListener eventSourceListener = new ZooEventSourceListener();
         client.streamCompletions(completion,eventSourceListener);
 
         CountDownLatch countDownLatch = new CountDownLatch(1);

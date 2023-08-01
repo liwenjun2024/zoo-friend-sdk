@@ -12,6 +12,8 @@ import java.util.List;
  * @description TODO
  * @date 2023/7/23 0:35
  */
+@Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class OpenAIResponse<T> implements Serializable {
     private String object;
     private List<T> data;

@@ -1,11 +1,12 @@
 package com.zoo.friend.entity.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.zoo.friend.entity.common.Choice;
 import com.zoo.friend.entity.common.Usage;
 import lombok.Data;
 
-import java.awt.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author 咏鹅
@@ -21,7 +22,7 @@ public class ProblemResponse extends OpenAIResponse implements Serializable {
     private String object;
     private long created;
     private String model;
-    private Choice[] choices;
+    private List<Choice> choices;
     private Usage usage;
 
 }

@@ -18,8 +18,8 @@ import java.util.Map;
 @Data
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor  //生成无参构造方法
+@AllArgsConstructor //生成构造方法
 public class ChatGPTCompletion implements Serializable {
 
     @Builder.Default
