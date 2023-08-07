@@ -1,6 +1,6 @@
 # zoo-friend-sdk
 
-目前加入了ChatGPT，以后会加入MJ  SD等。
+目前加入了ChatGPT（支持持流式），以后会加入MJ  SD等。
 
 ### 使用方式
 ```
