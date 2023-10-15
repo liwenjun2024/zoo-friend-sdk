@@ -16,7 +16,7 @@ mvn install
         <dependency>
             <groupId>com.zoo.friend</groupId>
             <artifactId>zoo-friend-sdk</artifactId>
-            <version>0.0.1</version>
+            <version>0.1</version>
         </dependency>
 ```
 

@@ -5,7 +5,7 @@
 
     <groupId>com.zoo.friend</groupId>
     <artifactId>zoo-friend-sdk</artifactId>
-    <version>0.0.1</version>
+    <version>0.1</version>
 
     <name>zoo-friend-sdk</name>
     <description>zoo-friend-sdk</description>
