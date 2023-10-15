@@ -21,6 +21,7 @@ mvn install
 ```
 
 
+### ChatGPT
 ```
 ChatGPTMessage message = ChatGPTMessage.Party()
                 .setRole(Role.USER).setContent("我今天没有吃水果，你可以给我推荐一些吗").partyRun();
