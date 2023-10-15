@@ -2,6 +2,7 @@ package com.zoo.friend;
 
 import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson2.JSONObject;
+import com.zoo.friend.constant.AIUrlConstant;
 import com.zoo.friend.entity.AI.xinghuo.MessageDTO;
 import com.zoo.friend.entity.AI.xinghuo.XH_Parameter;
 import com.zoo.friend.entity.AI.xinghuo.XH_Payload;
@@ -46,7 +47,7 @@ public class XHAIClient {
 
     private XHAIClient(Builder builder) {
         if(StringUtils.isEmpty(builder.apiHost)){
-            builder.apiHost = "spark-api.xf-yun.com";
+            builder.apiHost = AIUrlConstant.XINGHUO_HOST_URL;
         }
         if(StringUtils.isEmpty(builder.apiVersion)){
             builder.apiPath = "/v2.1/chat";
@@ -175,7 +176,7 @@ public class XHAIClient {
         WebSocket webSocket = okHttpClient.newWebSocket(XHRequest,listener);
 
         XH_Request requestDTO = this.getRequestParam(uid,message);
-        System.out.println("param==============");
+        System.out.println("打印参数");
         System.out.println(JSONObject.toJSONString(requestDTO));
         webSocket.send(JSONObject.toJSONString(requestDTO));
         return webSocket;
