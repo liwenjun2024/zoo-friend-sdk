@@ -1,4 +1,4 @@
-package com.zoo.friend.entity.common;
+package com.zoo.friend.entity.common.openai;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
@@ -13,6 +13,7 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Usage {
 
+    private long question_tokens;
     private long prompt_tokens;
     private long completion_tokens;
     private long total_tokens;

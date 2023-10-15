@@ -19,9 +19,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChatGPTParameters implements Serializable {
+    private List<String> required;
     private String type;
     private Object properties;
-    private List<String> required;
 }
 
 /**

@@ -1,6 +1,7 @@
 package com.zoo.friend.exception;
 
 import com.zoo.friend.common.ErrorCode;
+import lombok.Getter;
 
 /**
  * @author 咏鹅
@@ -8,6 +9,7 @@ import com.zoo.friend.common.ErrorCode;
  * @description TODO
  * @date 2023/7/23 13:50
  */
+@Getter
 public class BusinessException extends RuntimeException {
 
 
@@ -20,14 +22,5 @@ public class BusinessException extends RuntimeException {
         super(errorCode.getMsg());
         this.code = errorCode.getCode();
         this.msg = errorCode.getMsg();
-    }
-
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public int getCode() {
-        return code;
     }
 }

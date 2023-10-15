@@ -1,4 +1,4 @@
-package com.zoo.friend.entity.response;
+package com.zoo.friend.entity.response.openai;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
@@ -24,7 +24,7 @@ public class OpenAIResponse<T> implements Serializable {
 
     @Data
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public class Error {
+    public static class Error {
         private String message;
         private String type;
         private String param;

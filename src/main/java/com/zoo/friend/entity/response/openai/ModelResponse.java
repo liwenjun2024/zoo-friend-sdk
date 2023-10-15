@@ -1,6 +1,6 @@
-package com.zoo.friend.entity.response;
+package com.zoo.friend.entity.response.openai;
 
-import com.zoo.friend.entity.models.Model;
+import com.zoo.friend.entity.models.openai.Model;
 
 import java.io.Serializable;
 import java.util.List;

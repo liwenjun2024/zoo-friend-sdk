@@ -1,7 +1,7 @@
 package com.zoo.friend.interfaces;
 
-import com.zoo.friend.entity.response.ModelResponse;
-import com.zoo.friend.entity.response.ProblemResponse;
+import com.zoo.friend.entity.response.openai.ModelResponse;
+import com.zoo.friend.entity.response.openai.ProblemResponse;
 import io.reactivex.rxjava3.core.Single;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

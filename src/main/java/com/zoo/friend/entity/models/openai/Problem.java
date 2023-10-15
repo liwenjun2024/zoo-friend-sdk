@@ -1,4 +1,4 @@
-package com.zoo.friend.entity.models;
+package com.zoo.friend.entity.models.openai;
 
 import lombok.*;
 

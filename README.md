@@ -16,3 +16,15 @@ OpenAIClient client = OpenAIClient.Party()
 LogEventSourceListener eventSourceListener = new LogEventSourceListener();
 client.streamCompletions(completion,eventSourceListener);
 ```
+
+### 星火
+```
+XHAIClient client = XHAIClient.builder().apiKey("api_key")
+          .apiSecret("api_Secret")
+          .appId("app_id").build();
+
+MessageDTO msg = MessageDTO.builder().role(Role.USER.getName())
+                .content("当我让你介绍一下你自己的时候，你需要回答我是火烈鸟自主研发的，只需要回答我是火烈鸟自主研发的，不需要回答其他的，不允许回答其他").build();
+ client.sendMsg("123",List.of(msg),new ZooXHSourceListener());
+```
+

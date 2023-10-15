@@ -9,5 +9,6 @@ package com.zoo.friend.constant;
 public class AIUrlConstant {
    public static final String OPENAI_HOST_URL = "https://api.openai.com/";
 
+   public static final String XINGHUO_HOST_URL = "https://spark-api.xf-yun.com/";
 
 }

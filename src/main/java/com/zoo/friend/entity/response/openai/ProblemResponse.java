@@ -1,9 +1,10 @@
-package com.zoo.friend.entity.response;
+package com.zoo.friend.entity.response.openai;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.zoo.friend.entity.common.Choice;
-import com.zoo.friend.entity.common.Usage;
+import com.zoo.friend.entity.common.openai.Choice;
+import com.zoo.friend.entity.common.openai.Usage;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
  * @description TODO
  * @date 2023/7/23 0:33
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ProblemResponse extends OpenAIResponse implements Serializable {

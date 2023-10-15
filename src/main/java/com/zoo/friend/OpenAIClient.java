@@ -3,13 +3,9 @@ package com.zoo.friend;
 import cn.hutool.http.ContentType;
 import cn.hutool.http.Header;
 import cn.hutool.json.JSONUtil;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.zoo.friend.common.ErrorCode;
 import com.zoo.friend.constant.AIUrlConstant;
 import com.zoo.friend.entity.AI.chat.ChatGPTCompletion;
 import com.zoo.friend.entity.AI.chat.ChatGPTMessage;
-import com.zoo.friend.entity.models.Problem;
-import com.zoo.friend.exception.BusinessException;
 import com.zoo.friend.factory.FastJsonConverterFactory;
 import com.zoo.friend.interfaces.OpenAIGPTInterface;
 import lombok.Getter;
@@ -27,8 +23,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.net.InetSocketAddress;
 import java.net.Proxy;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -123,7 +118,7 @@ public class OpenAIClient {
     public void streamCompletions(ChatGPTMessage messages, EventSourceListener source) {
         ChatGPTCompletion completion = ChatGPTCompletion.builder()
                 .stream(true)
-                .messages(Arrays.asList(messages))
+                .messages(Collections.singletonList(messages))
                 .build();
         this.streamCompletions(completion, source);
     }

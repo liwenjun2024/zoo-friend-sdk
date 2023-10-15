@@ -1,19 +1,15 @@
 package com.zoo.friend.listener;
 
 
-import cn.hutool.db.Session;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zoo.friend.common.ErrorCode;
-import com.zoo.friend.entity.AI.chat.ChatGPTCompletion;
-import com.zoo.friend.entity.response.ProblemResponse;
+import com.zoo.friend.entity.response.openai.ProblemResponse;
 import com.zoo.friend.exception.BusinessException;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
-import okhttp3.WebSocket;
 import okhttp3.sse.EventSource;
 import okhttp3.sse.EventSourceListener;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
