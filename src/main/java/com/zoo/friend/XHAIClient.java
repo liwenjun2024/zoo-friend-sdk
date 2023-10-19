@@ -38,8 +38,6 @@ public class XHAIClient {
     private String apiKey;
     @Getter
     private String apiSecret;
-    @Getter
-    private String apiVersion;
 
     public static Builder builder() {
         return new Builder();

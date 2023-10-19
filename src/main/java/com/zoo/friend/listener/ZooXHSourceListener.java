@@ -36,8 +36,6 @@ public class ZooXHSourceListener extends WebSocketListener {
                 System.out.println("本次花费："+totalTokens + " tokens");
                 webSocket.close(3,"客户端主动断开链接");
             }
-
-
         }else{
             System.out.println("返回结果错误：\n" + responseData.getHeader().getCode()+  responseData.getHeader().getMessage() );
         }

@@ -34,6 +34,7 @@ public class OpenAIClientTest {
 //        } catch (InterruptedException e){
 //            e.printStackTrace();
 //        }
+
         XHAIClient client = XHAIClient.builder().apiKey("--")
                 .apiSecret("--")
                 .appId("--").build();
