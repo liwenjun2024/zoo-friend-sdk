@@ -20,7 +20,11 @@ public enum XingHuoModel {
     /**
      * 星火v2.0
      */
-    XING_HUO_2_0_MODEL("v2.1")
+    XING_HUO_2_0_MODEL("v2.1"),
+    /**
+     * 星火v3.0
+     */
+    XING_HUO_3_0_MODEL("v3.1")
     ;
 
     private final String name;

@@ -1,11 +1,10 @@
 package com.zoo.friend;
 
 import com.zoo.friend.constant.Role;
+import com.zoo.friend.constant.XingHuoModel;
 import com.zoo.friend.entity.AI.xinghuo.MessageDTO;
 import com.zoo.friend.listener.ZooXHSourceListener;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -35,9 +34,10 @@ public class OpenAIClientTest {
 //            e.printStackTrace();
 //        }
 
-        XHAIClient client = XHAIClient.builder().apiKey("--")
-                .apiSecret("--")
-                .appId("--").build();
+        XHAIClient client = XHAIClient.builder().apiKey("")
+                .apiSecret("")
+                .apiVersion(XingHuoModel.XING_HUO_3_0_MODEL.getName())
+                .appId("").build();
 
         MessageDTO msg = MessageDTO.builder().role(Role.USER.getName())
                         .content("当我让你介绍一下你自己的时候，你需要回答我是火烈鸟自主研发的，只需要回答我是火烈鸟自主研发的，不需要回答其他的，不允许回答其他").build();

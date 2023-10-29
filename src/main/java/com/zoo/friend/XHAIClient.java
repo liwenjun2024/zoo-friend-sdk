@@ -48,7 +48,7 @@ public class XHAIClient {
             builder.apiHost = AIUrlConstant.XINGHUO_HOST_URL;
         }
         if(StringUtils.isEmpty(builder.apiVersion)){
-            builder.apiPath = "/v2.1/chat";
+            builder.apiPath = "/v3.1/chat";
         }else{
             builder.apiPath = "/"+ builder.apiVersion +"/chat";
         }
@@ -153,7 +153,7 @@ public class XHAIClient {
     */
     public XH_Request getRequestParam(String uid, List<MessageDTO> message) {
         return XH_Request.builder().header(new XH_Request.Header(this.appId,uid))
-                        .parameter(new XH_Parameter(new XH_Parameter.chat("generalv2",0.5,1024)))
+                .parameter(new XH_Parameter(new XH_Parameter.chat("generalv2",0.5,1024)))
                 .payload(new XH_Payload(new XH_Payload.Message(message))).build();
     }
 
