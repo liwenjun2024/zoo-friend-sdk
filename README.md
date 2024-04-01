@@ -1,7 +1,4 @@
-# zoo-friend-sdk
-
-目前加入了ChatGPT、星火大模型，以后会加入MJ、SD等。
-由于jdk和idea版本问题会导致无法安装，我这边提供我的版本，请自行修改
+# zoo-friend-sdk。
 jdk: 17
 idea: 2023.2.3
 实测idea 2021 编译是存在问题的
